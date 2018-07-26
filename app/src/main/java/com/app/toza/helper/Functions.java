@@ -20,9 +20,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -43,14 +41,12 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 
-
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -112,55 +108,52 @@ public class Functions {
         return dp;
     }
 
-    public static void fireIntent(Activity context, Class cls, boolean isNewActivity) {
-        Intent i = new Intent(context, cls);
-        context.startActivity(i);
-        Activity activity = (Activity) context;
+    public static void fireIntent(BaseActivity baseActivity, Class cls, boolean isNewActivity) {
+        Intent i = new Intent(baseActivity, cls);
+        baseActivity.startActivity(i);
         if (!isNewActivity) {
-            activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            baseActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         } else {
-            activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            baseActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 
-    public static void fireIntent(Context context, Intent intent, boolean isNewActivity) {
-        Activity activity = (Activity) context;
-        context.startActivity(intent);
+    public static void fireIntent(BaseActivity baseActivity, Intent intent, boolean isNewActivity) {
+        baseActivity.startActivity(intent);
         if (!isNewActivity) {
-            activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            baseActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         } else {
-            activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            baseActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 
-    public static void fireIntent(Activity context, boolean isNewActivity) {
-        context.finish();
+    public static void fireIntent(BaseActivity baseActivity, boolean isNewActivity) {
+        baseActivity.finish();
         if (!isNewActivity) {
-            context.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            baseActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         } else {
-            context.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            baseActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 
-    public static void fireIntentForResult(Activity context, Class<?> cls, int requestCode, boolean isNewActivity) {
-
-        Intent intent = new Intent(context, cls);
-        context.startActivityForResult(intent, requestCode);
+    public static void fireIntentForResult(BaseActivity baseActivity, Class<?> cls, int requestCode, boolean isNewActivity) {
+        Intent intent = new Intent(baseActivity, cls);
+        baseActivity.startActivityForResult(intent, requestCode);
         if (!isNewActivity) {
-            context.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            baseActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         } else {
-            context.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            baseActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 
-    public static void fireIntentWithClearFlag(Activity context, Class cls, boolean isNewActivity) {
-        Intent intent = new Intent(context, cls);
+    public static void fireIntentWithClearFlag(BaseActivity baseActivity, Class cls, boolean isNewActivity) {
+        Intent intent = new Intent(baseActivity, cls);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intent);
+        baseActivity.startActivity(intent);
         if (!isNewActivity) {
-            context.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            baseActivity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         } else {
-            context.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            baseActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
 
     }
