@@ -167,7 +167,6 @@ public class BaseActivity extends AppCompatActivity {
             return;
         }
         this.doubleBackToExitPressedOnce = true;
-        //Functions.showToast(this, context.getString(R.string.click_back_to_exit));
         Functions.showToast(this, getString(R.string.click_back_to_exit), MDToast.TYPE_INFO);
         new Handler().postDelayed(new Runnable() {
             @Override
